@@ -8,6 +8,7 @@
 
 <f:metadata>
     <f:viewParam name="q" value="#{userBean.searchQuery}"/>
+    <f:viewAction action="#{userBean.search()}"/>
 </f:metadata>
 <h:head>
     <title>User List page</title>
@@ -21,7 +22,8 @@
     </h:form>
 
     <h:form prependId="false">
-        <p:dataTable id="users-table" value="#{userBean.users}" var="user">
+        <p:growl />
+        <p:dataTable id="users-table" value="#{userBean.userList}" var="user">
             <p:column headerText="Name">
                 <p:inputText value="#{user.name}"/>
             </p:column>

@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #333;
+}
+
+nav a {
+    text-decoration: none;
+    display: inline-block;
+    color: #ddd;
+    padding: 5px 10px;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+nav a.active {
+    background-color: #444;
+}

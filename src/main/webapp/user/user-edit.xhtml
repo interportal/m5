@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/jsf/base.xhtml">
+
+    <ui:define name="title">User Edit</ui:define>
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <!-- http://localhost:8080/user/user-edit.xhtml?id=1 -->
+            <f:viewParam name="id" value="#{userBean.editUserId}"/>
+            <f:viewAction action="#{userBean.initEditUser()}"/>
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="content">
+        <h2>User Edit</h2>
+        <h:form>
+            <p:panelGrid columns="3" layout="grid">
+                <p:outputLabel for="email" value="Email:"/>
+                <p:inputText id="email" value="#{userBean.editUser.email}"
+                             required="true" requiredMessage="Email is required"/>
+                <p:messages for="email"/>
+
+                <p:outputLabel for="name" value="Name:"/>
+                <p:inputText id="name" value="#{userBean.editUser.name}"
+                             required="true" requiredMessage="Name is required"/>
+                <p:messages for="name"/>
+
+                <p:outputLabel for="surname" value="Surname:"/>
+                <p:inputText id="surname" value="#{userBean.editUser.surname}"
+                             required="true" requiredMessage="Surname is required"/>
+                <p:messages for="surname"/>
+
+                <p:outputLabel for="age" value="Age:"/>
+                <p:inputNumber minValue="0" maxValue="200" id="age" value="#{userBean.editUser.age}"
+                               required="true" requiredMessage="Age is required"/>
+                <p:messages for="age"/>
+
+                <p:commandButton value="Save" action="#{userBean.saveUser()}"
+                                 process="@form" update="@form"/>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
