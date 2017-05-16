@@ -1,10 +1,17 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <nav>
         <p:link value="Home" outcome="/index"/>
         <p:link value="Users" outcome="/user/user-list"/>
+        <div class="lang">
+            <h:form>
+                <p:commandLink value="en" actionListener="#{localeBean.changeLanguage('en')}" ajax="false"/>
+                <p:commandLink value="ro" actionListener="#{localeBean.changeLanguage('ro')}" ajax="false"/>
+            </h:form>
+        </div>
     </nav>
 
 </ui:composition>

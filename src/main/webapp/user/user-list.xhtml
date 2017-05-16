@@ -1,40 +1,86 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/jsf/base.xhtml">
 
-<f:metadata>
-    <f:viewParam name="q" value="#{userBean.searchQuery}"/>
-    <f:viewAction action="#{userBean.search()}"/>
-</f:metadata>
-<h:head>
-    <title>User List page</title>
-</h:head>
-<h:body>
-    <h2>User List</h2>
-    <h:form id="search-form">
-        <p:inputText id="search" value="#{userBean.searchQuery}" placeholder="Search">
-            <p:ajax event="keyup" delay="200" listener="#{userBean.search()}" update=":users-table"/>
-        </p:inputText>
-    </h:form>
+    <ui:define name="title">#{msgs.user_list}</ui:define>
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="q" value="#{userBean.searchQuery}"/>
+            <f:viewAction action="#{userBean.search()}"/>
+        </f:metadata>
+    </ui:define>
 
-    <h:form prependId="false">
-        <p:growl />
-        <p:dataTable id="users-table" value="#{userBean.userList}" var="user">
-            <p:column headerText="Name">
-                <p:inputText value="#{user.name}"/>
-            </p:column>
-            <p:column headerText="Surname">
-                <h:outputText value="#{user.surname}"/>
-            </p:column>
-            <p:column headerText="Email">
-                <h:outputText value="#{user.email}"/>
-            </p:column>
-        </p:dataTable>
-    </h:form>
-</h:body>
 
-</html>
+    <ui:define name="content">
+
+        <p:panel id="added-users" header="Added users">
+            <ui:repeat value="#{userBean.addedUsers}" var="user">
+                <h:outputText value="#{user.name}" /> <br/>
+            </ui:repeat>
+        </p:panel>
+
+        <ui:fragment rendered="#{userBean.lastSavedUser != null}">
+            <h3>Last saved user:</h3>
+            <div>
+                id: #{userBean.lastSavedUser.id} <br/>
+                Name: #{userBean.lastSavedUser.name} <br/>
+                Surname: #{userBean.lastSavedUser.surname} <br/>
+                email: #{userBean.lastSavedUser.email} <br/>
+                age: #{userBean.lastSavedUser.age} <br/>
+            </div>
+        </ui:fragment>
+
+
+        <h2>#{msgs.user_list}</h2>
+        <h:form id="search-form">
+            <p:inputText id="search" value="#{userBean.searchQuery}" placeholder="Search">
+                <p:ajax event="keyup" delay="200" listener="#{userBean.search()}" update=":users-table"/>
+            </p:inputText>
+        </h:form>
+
+        <h:form prependId="false">
+            <p:growl autoUpdate="true"/>
+            <p:dataTable id="users-table" value="#{userBean.userList}" var="user">
+                <p:column headerText="Name">
+                    <h:outputText value="#{user.name}"/>
+                </p:column>
+                <p:column headerText="Surname">
+                    <h:outputText value="#{user.surname}"/>
+                </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{user.email}"/>
+                </p:column>
+
+                <p:column headerText="Actions">
+                    <p:button value="Edit" outcome="/user/user-edit">
+                        <f:param name="id" value="#{user.id}"/>
+                    </p:button>
+                    <p:commandButton value="Delete" action="#{userBean.deleteUser(user)}"
+                                     process="@this" update="@form">
+                        <p:confirm header="Delete User" message="Are you sure?"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <p:commandButton value="Quick Add"
+                             actionListener="#{userBean.initNewUser()}"
+                             update=":user-add-form"
+                             oncomplete="PF('addUserDlg').show();">
+                <p:resetInput target=":user-add-form" />
+            </p:commandButton>
+        </h:form>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="#{msgs.yes}" type="button" styleClass="ui-confirmdialog-yes"/>
+            <p:commandButton value="#{msgs.no}" type="button" styleClass="ui-confirmdialog-no"/>
+        </p:confirmDialog>
+
+        <ui:include src="user-edit-dialog.xhtml"/>
+    </ui:define>
+
+
+</ui:composition>

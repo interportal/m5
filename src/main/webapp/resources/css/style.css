@@ -3,6 +3,10 @@ body {
     padding: 0;
 }
 
+input {
+    width: 100%;
+}
+
 nav {
     background-color: #333;
 }
@@ -20,4 +24,13 @@ nav a:hover {
 
 nav a.active {
     background-color: #444;
+}
+
+nav .lang {
+    float: right;
+    margin-right: 20px;
+}
+
+.half {
+    width: 50%;
 }

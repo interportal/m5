@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/jsf/base.xhtml">
+
+    <ui:define name="content">
+        <h3>Enter some text</h3>
+        <h:form>
+            <h:inputText value="#{testValue}"/>
+            <h:commandButton value="Submit"/>
+        </h:form>
+        <div>
+            <h3>Escaped</h3>
+            <h:outputText value="#{testValue}"/>
+
+            <h3>Unescaped</h3>
+            <h:outputText value="#{testValue}" escape="false"/>
+        </div>
+    </ui:define>
+</ui:composition>
