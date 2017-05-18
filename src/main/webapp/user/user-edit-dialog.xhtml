@@ -9,23 +9,23 @@
             <p:messages/>
             <p:panelGrid columns="2" layout="grid">
                 <p:outputLabel for="email" value="Email:"/>
-                <p:inputText id="email" value="#{userBean.editUser.email}"
+                <p:inputText id="email" value="#{userListBean.addUser.email}"
                              required="true" requiredMessage="Email is required"/>
 
                 <p:outputLabel for="name" value="Name:"/>
-                <p:inputText id="name" value="#{userBean.editUser.name}"
+                <p:inputText id="name" value="#{userListBean.addUser.name}"
                              required="true" requiredMessage="Name is required"/>
 
                 <p:outputLabel for="surname" value="Surname:"/>
-                <p:inputText id="surname" value="#{userBean.editUser.surname}"
+                <p:inputText id="surname" value="#{userListBean.addUser.surname}"
                              required="true" requiredMessage="Surname is required"/>
 
                 <p:outputLabel for="age" value="Age:"/>
                 <p:outputPanel styleClass="half" >
-                    <p:inputNumber minValue="0" maxValue="200" id="age" value="#{userBean.editUser.age}"
+                    <p:inputNumber minValue="0" maxValue="200" id="age" value="#{userListBean.addUser.age}"
                                    required="true" requiredMessage="Age is required"/>
                 </p:outputPanel>
-                <p:commandButton value="Save" actionListener="#{userBean.saveUser()}"
+                <p:commandButton value="Save" actionListener="#{userListBean.saveUser()}"
                                  process="@form" update="@form :users-table :added-users"
                                  oncomplete="jsf.hideOnSuccess('addUserDlg', args)"/>
             </p:panelGrid>

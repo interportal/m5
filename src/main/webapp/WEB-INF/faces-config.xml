@@ -10,9 +10,10 @@
         <locale-config>
             <default-locale>en</default-locale>
             <supported-locale>ro</supported-locale>
+            <supported-locale>ru</supported-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>messages</base-name>
+            <base-name>md.curs.jsf.messages</base-name>
             <var>msgs</var>
         </resource-bundle>
     </application>

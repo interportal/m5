@@ -3,6 +3,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:cc="http://xmlns.jcp.org/jsf/composite/component"
                 template="/WEB-INF/jsf/base.xhtml">
 
     <ui:define name="title">User Edit</ui:define>
@@ -10,8 +11,8 @@
     <ui:define name="metadata">
         <f:metadata>
             <!-- http://localhost:8080/user/user-edit.xhtml?id=1 -->
-            <f:viewParam name="id" value="#{userBean.editUserId}"/>
-            <f:viewAction action="#{userBean.initEditUser()}"/>
+            <f:viewParam name="id" value="#{userEditBean.editUserId}"/>
+            <f:viewAction action="#{userEditBean.initEditUser()}"/>
         </f:metadata>
     </ui:define>
 
@@ -20,26 +21,38 @@
         <h:form>
             <p:panelGrid columns="3" layout="grid">
                 <p:outputLabel for="email" value="Email:"/>
-                <p:inputText id="email" value="#{userBean.editUser.email}"
-                             required="true" requiredMessage="Email is required"/>
+                <h:panelGroup>
+                    <p:inputText id="email" value="#{userEditBean.editUser.email}"
+                                 required="true" requiredMessage="Email is required"/>
+                    <cc:form-tooltip message="Standard email expected"/>
+                </h:panelGroup>
                 <p:messages for="email"/>
 
                 <p:outputLabel for="name" value="Name:"/>
-                <p:inputText id="name" value="#{userBean.editUser.name}"
-                             required="true" requiredMessage="Name is required"/>
+                <h:panelGroup>
+                    <p:inputText id="name" value="#{userEditBean.editUser.name}"
+                                 required="true" requiredMessage="Name is required"/>
+                    <cc:form-tooltip message="Name shall not contain spaces"/>
+                </h:panelGroup>
                 <p:messages for="name"/>
 
                 <p:outputLabel for="surname" value="Surname:"/>
-                <p:inputText id="surname" value="#{userBean.editUser.surname}"
-                             required="true" requiredMessage="Surname is required"/>
+                <h:panelGroup>
+                    <p:inputText id="surname" value="#{userEditBean.editUser.surname}"
+                                 required="true" requiredMessage="Surname is required"/>
+                    <cc:form-tooltip message="Surname shall not contain spaces"/>
+                </h:panelGroup>
                 <p:messages for="surname"/>
 
                 <p:outputLabel for="age" value="Age:"/>
-                <p:inputNumber minValue="0" maxValue="200" id="age" value="#{userBean.editUser.age}"
-                               required="true" requiredMessage="Age is required"/>
+                <h:panelGroup>
+                    <p:inputNumber minValue="0" maxValue="200" id="age" value="#{userEditBean.editUser.age}"
+                                   required="true" requiredMessage="Age is required"/>
+                    <cc:form-tooltip message="Age shall be a number between 0 and 200"/>
+                </h:panelGroup>
                 <p:messages for="age"/>
 
-                <p:commandButton value="Save" action="#{userBean.saveUser()}"
+                <p:commandButton value="Save" action="#{userEditBean.saveUser()}"
                                  process="@form" update="@form"/>
             </p:panelGrid>
         </h:form>

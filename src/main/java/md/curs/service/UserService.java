@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 /**
  * User service example
@@ -63,6 +64,10 @@ public class UserService {
     @Transactional
     public void saveUser(User user) {
         userDao.save(user);
+        Random r = new Random();
+        if (r.nextInt(2) > 0) {
+            throw new RuntimeException("Eu nu vreu");
+        }
     }
 
     /**

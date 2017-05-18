@@ -34,3 +34,27 @@ nav .lang {
 .half {
     width: 50%;
 }
+
+.chips {
+    display: inline-block;
+    background-color: blue;
+    padding: 5px 10px;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
