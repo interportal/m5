@@ -24,6 +24,9 @@ public class User {
     private String email;
     private int age;
 
+    @Embedded
+    private Address address;
+
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private Employee employee;
 

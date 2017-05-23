@@ -2,16 +2,15 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:p="http://primefaces.org/ui">
 
     <cc:interface>
-        <!-- Attributes -->
-        <cc:attribute name="message" type="java.lang.String"/>
+        <cc:attribute name="message"/>
+        <cc:attribute name="size" default="24" type="java.lang.Integer"/>
     </cc:interface>
 
     <cc:implementation>
-        <h:graphicImage id="tooltip-image" name="component/icon.png" width="24"/>
+        <h:graphicImage id="tooltip-image" name="composite-components/form-tooltip/tooltip-icon.png" width="#{cc.attrs.size}"/>
         <p:tooltip for="tooltip-image" value="#{cc.attrs.message}"/>
     </cc:implementation>
 

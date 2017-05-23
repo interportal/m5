@@ -42,7 +42,17 @@ nav .lang {
     color: white;
 }
 
+/* CSS fixes */
 
+.slim .ui-messages-info,
+.slim .ui-messages-warn,
+.slim .ui-messages-error,
+.slim .ui-messages-fatal {
+    margin: 0;
+    padding: 5px 10px;
+}
+
+/* End CSS FIxes */
 
 
 

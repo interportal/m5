@@ -1,0 +1,8 @@
+.input-tooltip {
+    display: flex;
+    align-items: center;
+}
+
+.input-tooltip img {
+    margin-left: 10px;
+}
