@@ -40,6 +40,12 @@ public class UserJpaDao {
         return em.find(User.class, id);
     }
 
+    public User findByUsername(String username) {
+        return em.createQuery("FROM User u JOIN FETCH u.permissions WHERE u.username = :username", User.class)
+                .setParameter("username", username)
+                .getSingleResult();
+    }
+
     /**
      * creates or updates an user
      *
@@ -53,6 +59,7 @@ public class UserJpaDao {
 
     /**
      * Delete an User by it's ID
+     *
      * @param userId The id to delete
      * @return the number of affected rows (should be 1 if userId provided is a valid one)
      */

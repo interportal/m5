@@ -16,7 +16,7 @@
 
     <ui:define name="content">
 
-        <p:outputPanel id="added-users">
+        <p:outputPanel id="added-users" rendered="#{authBean.hasAuthority('ADMIN')}">
             <p:panel header="Added users"
                      rendered="#{!userListBean.addedUsers.isEmpty()}">
                 <ui:repeat value="#{userListBean.addedUsers}" var="user">
@@ -59,7 +59,7 @@
                     <h:outputText value="#{user.email}"/>
                 </p:column>
 
-                <p:column headerText="Actions">
+                <p:column headerText="Actions" rendered="#{authBean.hasAuthority('ADMIN')}">
                     <p:button value="Edit" outcome="/user/user-edit">
                         <f:param name="id" value="#{user.id}"/>
                     </p:button>
@@ -71,7 +71,7 @@
 
             </p:dataTable>
 
-            <p:commandButton value="Quick Add"
+            <p:commandButton value="Quick Add" rendered="#{authBean.hasAuthority('ADMIN')}"
                              actionListener="#{userListBean.initNewUser()}"
                              update=":user-add-form"
                              oncomplete="PF('addUserDlg').show();">

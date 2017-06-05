@@ -42,6 +42,13 @@ nav .lang {
     color: white;
 }
 
+/* Login */
+.login-form {
+    width: 40%;
+    margin: 200px auto;
+}
+/* End Login */
+
 /* CSS fixes */
 
 .slim .ui-messages-info,

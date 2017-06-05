@@ -5,11 +5,14 @@
 
     <nav>
         <p:link value="Home" outcome="/index"/>
-        <p:link value="Users" outcome="/user/user-list"/>
+        <p:link value="Users" outcome="/user/user-list"
+                rendered="#{authBean.isAuthenticated()}"/>
         <div class="lang">
             <h:form>
                 <p:commandLink value="en" actionListener="#{localeBean.changeLanguage('en')}" ajax="false"/>
                 <p:commandLink value="ro" actionListener="#{localeBean.changeLanguage('ro')}" ajax="false"/>
+                <p:link value="Logout" href="/logout"
+                        rendered="#{authBean.isAuthenticated()}"/>
             </h:form>
         </div>
     </nav>
